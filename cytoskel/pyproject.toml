@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "cytoskel"
+version = "0.1.0"
+description = ""
+authors = ["Ankur Kumar <ank@leoank.me>"]
+readme = "README.md"
+packages = [{include = "cytoskel", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
