@@ -48,14 +48,15 @@
                     micromamba
                     poetry
                     mpkgs.awscli2
-                    pulumi-bin
+                    mpkgs.pulumi-bin
                   ];
                   enterShell = ''
                     export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
                     eval "$(micromamba shell hook -s bash)"
                     micromamba create -r .venv -n cytoskel -c conda-forge python=3.10
-                    micromamba activate cytoskel
+                    micromamba activate .venv/envs/cytoskel
                     poetry install -C cytoskel
+                    python -m ipykernel install --user --name cytoskel
                   '';
                 }
               ];
