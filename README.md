@@ -29,26 +29,23 @@ cytoskel cpgstaging up
 Destroy the stack
 
 ```bash
-cytoskel cpgstaging down
+cytoskel cpgstaging destroy
 ```
 
-Register prefix location with grants instance
+Create user
 
 ```bash
-cytoskel cpgstaging prefix add -n "location name" -p "s3://staging-cellpainting-gallery/"
-
-# or more scoped
-cytoskel cpgstaging prefix add -n "location name" -p "s3://staging-cellpainting-gallery/project_id/source_id"
+cytoskel cpgstaging create user "username"
 ```
 
-Create users that can access grants instance
+Get grant location ids
 
 ```bash
-cytoskel cpgstaging user add "username"
+cytoskel cpgstaging list location
 ```
 
-Create grants
+Create access grants
 
 ```bash
-cytoskel cpgstaging grants add -u "username" -l "location"
+cytoskel cpgstaging create grant "username" "location_is" "prefix"
 ```
