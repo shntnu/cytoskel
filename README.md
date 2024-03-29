@@ -6,7 +6,7 @@ Cloud infrastrcuture abstraction
 
 Step 1. Install nix package manager.
 
-Find instructions here.
+Find instructions [here](https://nixos.org/download/).
 
 Step 2. Activate nix environment
 
@@ -16,7 +16,9 @@ nix develop . --impure
 
 Step 3. Configure credentials for `aws` and `pulumi`
 
-Find instructions here andhere respectively.
+Find instructions
+[here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
+and [here](https://www.pulumi.com/docs/concepts/config/) respectively.
 
 ## Commands for CPG staging stack
 
