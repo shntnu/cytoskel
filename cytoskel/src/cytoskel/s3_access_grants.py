@@ -29,6 +29,7 @@ def register_s3_prefix(
     iam_role = aws.iam.Role(
         "cpg_staging_access_grant",
         name="cpg_staging_access_grant_location_role",
+        max_session_duration=43200,
         assume_role_policy=pulumi.Output.all(
             account_id=aws_account.account_id,
             access_grants_instance_arn=access_grants_instance_arn,
@@ -90,7 +91,7 @@ def register_s3_prefix(
                                         "s3:GetObjectVersionAcl",
                                         "s3:ListMultipartUploadParts",
                                     ],
-                                    "Resource": [args["bucket_arn"]],
+                                    "Resource": [f"{args['bucket_arn']}*"],
                                     "Condition": {
                                         "StringEquals": {
                                             "aws:ResourceAccount": args["account_id"]
@@ -113,7 +114,7 @@ def register_s3_prefix(
                                         "s3:DeleteObjectVersion",
                                         "s3:AbortMultipartUpload",
                                     ],
-                                    "Resource": [args["bucket_arn"]],
+                                    "Resource": [f"{args['bucket_arn']}*"],
                                     "Condition": {
                                         "StringEquals": {
                                             "aws:ResourceAccount": args["account_id"]
