@@ -10,7 +10,7 @@ aws_secret_access_key = {SECRET_ACCESS_KEY}
 
 ## Create file called `s3_credentials.sh`
 
-This will get and activate temporary data credentials:
+This will get and activate temporary data credentials. Change the `target` param accordingly:
 ```
 export AWS_PROFILE=cpg_staging
 export AWS_REGION=us-east-1
@@ -21,6 +21,7 @@ output=$(aws s3control get-data-access \
   --target "s3://staging-cellpainting-gallery/*" \
   --permission READWRITE \
   --privilege Default \
+  --duration-seconds 43200 \
   --region $AWS_REGION)
 
 # Check if the command was successful
@@ -42,16 +43,20 @@ else
 fi
 ```
 
+Grant execution for sh file:
+```bash
+$ chmod +x s3_credentials.sh
+```
 ## Activate credentials
 Let's say you are running `python run.py`:
 
 Option 1: Activate credentials for the rest of the shell (Note: generated credentials only valid for 1-12 hours, flag can be set in script above)
 ```
-source s3_credentials.sh
+./s3_credentials.sh
 python run.py
 ```
 Option 2: Create subshell to only activate credentials for command (recommended)
 ```
-(source s3_credentials; python run.py)
+(./s3_credentials; python run.py)
 ```
 
