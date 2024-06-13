@@ -53,6 +53,6 @@ python run.py
 ```
 Option 2: Create subshell to only activate credentials for command (recommended)
 ```
-(./s3_credentials; python run.py)
+(source s3_credentials; python run.py)
 ```
 
