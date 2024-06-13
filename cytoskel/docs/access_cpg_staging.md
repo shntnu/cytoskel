@@ -43,16 +43,12 @@ else
 fi
 ```
 
-Grant execution for sh file:
-```bash
-$ chmod +x s3_credentials.sh
-```
 ## Activate credentials
 Let's say you are running `python run.py`:
 
 Option 1: Activate credentials for the rest of the shell (Note: generated credentials only valid for 1-12 hours, flag can be set in script above)
 ```
-./s3_credentials.sh
+source s3_credentials.sh
 python run.py
 ```
 Option 2: Create subshell to only activate credentials for command (recommended)
