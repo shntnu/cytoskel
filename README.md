@@ -11,6 +11,7 @@ Cloud infrastructure abstraction for managing AWS S3 Access Grants, IAM users, a
 - **Pulumi** installed and configured.
   - Instructions: [Pulumi Configuration](https://www.pulumi.com/docs/concepts/config/)
 - **Python 3.7+**
+- **[jq](https://stedolan.github.io/jq/)** installed (required for parsing JSON in shell scripts)
 - **Optional:** Nix package manager (for advanced environment management)
 
 ### Installation
@@ -148,33 +149,8 @@ Created grant with ARN: arn:aws:s3:us-east-1:XXXXXXXXXXXX:access-grants/default/
 
 ### Accessing the S3 Bucket
 
-The user can now access the specified prefix in the S3 bucket.
-
-1. **Configure AWS Credentials**
-
-   Add the provided credentials to your `~/.aws/credentials` file:
-
-   ```
-   [cpg_staging]
-   aws_access_key_id = <AccessKeyID>
-   aws_secret_access_key = <SecretAccessKey>
-   ```
-
-2. **Access the Bucket**
-
-   Use the AWS CLI to list or upload files within the allowed prefix.
-
-   **List contents:**
-
-   ```bash
-   AWS_PROFILE=cpg_staging aws s3 ls s3://staging-cellpainting-gallery/cpgxxxx-xxxx/
-   ```
-
-   **Upload a file:**
-
-   ```bash
-   AWS_PROFILE=cpg_staging aws s3 cp localfile.txt s3://staging-cellpainting-gallery/cpgxxxx-xxxx/
-   ```
+The user can now access the specified prefix in the S3 bucket by obtaining temporary session credentials.
+See [cytoskel/docs/aws_credentials.md](./cytoskel/docs/aws_credentials.md) for details.
 
 ### Deleting a Grant
 
@@ -237,20 +213,26 @@ User with username: test_user is deleted
 
 To verify the user's access:
 
-1. **Switch to the User's AWS Profile**
+1. **Ensure the user's initial credentials are set in `~/.aws/credentials` under `[cpg_staging]`.**
 
-   Ensure the user's credentials are set in `~/.aws/credentials` under `[cpg_staging]`.
-
-2. **List Objects in the Allowed Prefix**
+2. **Use the `s3_credentials.sh` script to obtain temporary credentials.**
 
    ```bash
-   AWS_PROFILE=cpg_staging aws s3 ls s3://staging-cellpainting-gallery/cpgxxxx-xxxx/
+   source s3_credentials.sh
    ```
 
-3. **Upload a File**
+3. **Perform S3 Operations within the Allowed Prefix**
+
+   **List Objects:**
 
    ```bash
-   AWS_PROFILE=cpg_staging aws s3 cp localfile.txt s3://staging-cellpainting-gallery/cpgxxxx-xxxx/
+   aws s3 ls s3://staging-cellpainting-gallery/<prefix_without_asterisk>/
+   ```
+
+   **Upload a File:**
+
+   ```bash
+   aws s3 cp localfile.txt s3://staging-cellpainting-gallery/<prefix_without_asterisk>/
    ```
 
 ## Cleanup
@@ -281,6 +263,7 @@ The `flake.nix` file sets up a development environment with the necessary tools.
 
 - **AWS CLI Configuration:** [AWS CLI Configuration Guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
 - **Pulumi Configuration:** [Pulumi Configuration Guide](https://www.pulumi.com/docs/concepts/config/)
+- **Access Grants Documentation:** [AWS S3 Access Points and Grants](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html)
 
 ---
 
