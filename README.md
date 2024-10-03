@@ -150,7 +150,7 @@ Created grant with ARN: arn:aws:s3:us-east-1:XXXXXXXXXXXX:access-grants/default/
 ### Accessing the S3 Bucket
 
 The user can now access the specified prefix in the S3 bucket by obtaining temporary session credentials.
-See [cytoskel/docs/access_cpg_staging.md](./cytoskel/docs/access_cpg_staging.md) for details.
+See [access_cpg_staging.md](./cytoskel/docs/access_cpg_staging.md) for details.
 
 ### Deleting a Grant
 
