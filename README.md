@@ -95,13 +95,13 @@ cytoskel cpgstaging delete grant ag-8e383f90-3881-1234-82cc-b8e83dd91eb6
 
 3. Test access:
 
-```bash
-# List objects
-aws s3 ls s3://staging-cellpainting-gallery/cpgxxxx-xxxx/
+   ```bash
+   # List objects
+   aws s3 ls s3://staging-cellpainting-gallery/cpgxxxx-xxxx/
 
-# Upload file
-aws s3 cp localfile.txt s3://staging-cellpainting-gallery/cpgxxxx-xxxx/
-```
+   # Upload file
+   aws s3 cp localfile.txt s3://staging-cellpainting-gallery/cpgxxxx-xxxx/
+   ```
 
 ## Notes
 
