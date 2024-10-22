@@ -29,16 +29,18 @@ All commands require `AWS_PROFILE=<your_aws_profile>` prefix (or set `AWS_PROFIL
 
 ### Initialize Infrastructure (One-Time Setup)
 
-```bash
-cytoskel cpgstaging up
-```
-
-This will:
+This needs to be done just once to:
 
 - Create the `staging-cellpainting-gallery` S3 bucket (if it doesn't exist)
 - Set up the S3 Access Grants instance
 - Register the bucket location for access grants
 - Create necessary IAM roles and policies
+
+Skip over this step if the infrastructure has already been initialized.
+
+```bash
+cytoskel cpgstaging up
+```
 
 ### List Resources
 
