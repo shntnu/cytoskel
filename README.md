@@ -87,7 +87,7 @@ cytoskel cpgstaging delete grant ag-8e383f90-3881-1234-82cc-b8e83dd91eb6
 ## Testing Access
 
 1. Set user credentials in `~/.aws/credentials` under `[cpg_staging]`
-2. Get temporary credentials:
+2. Get temporary credentials (see instructions [here](/cytoskel/docs/access_cpg_staging.md) for details):
 
    ```bash
    source s3_credentials.sh
