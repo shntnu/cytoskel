@@ -24,7 +24,7 @@ nix develop . --impure
 
 ## Core Operations
 
-All commands require `AWS_PROFILE=<your_aws_profile>` prefix (e.g., `AWS_PROFILE=<your_aws_profile> cytoskel cpgstaging list location`)
+All commands require `AWS_PROFILE=<your_aws_profile>` prefix (e.g., `AWS_PROFILE=<your_aws_profile> cytoskel cpgstaging list location`).
 Alternatively, set the environment variable using `export AWS_PROFILE=<your_aws_profile>`.
 `your_aws_profile` should have admin access to `cellpainting-gallery` AWS account.
 
