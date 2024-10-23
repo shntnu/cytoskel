@@ -29,6 +29,7 @@ Alternatively, set the environment variable using `export AWS_PROFILE=<your_aws_
 `your_aws_profile` should have admin access to `cellpainting-gallery` AWS account.
 
 ### Initialize Infrastructure (One-Time Setup)
+Skip over this step if the infrastructure has already been initialized.
 
 This needs to be done just once to:
 
@@ -37,7 +38,6 @@ This needs to be done just once to:
 - Register the bucket location for access grants
 - Create necessary IAM roles and policies
 
-Skip over this step if the infrastructure has already been initialized.
 
 ```bash
 cytoskel cpgstaging up
