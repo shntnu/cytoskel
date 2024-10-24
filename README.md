@@ -13,22 +13,37 @@ Cloud infrastructure tool for managing AWS S3 Access Grants, IAM users, and perm
 ## Quick Start
 
 ```bash
-# Install
+# Clone repository
 git clone https://github.com/broadinstitute/cytoskel.git
-cd cytoskel
+cd cytoskel/cytoskel
+
+# Install using pip
 pip install -e .
 
-# Alternatively, use Nix
+# Instead of installation with pip, use Nix
 nix develop . --impure
 ```
 
 ## Core Operations
 
+To proceed, you need and AWS profile with sufficient access to `cellpainting-gallery` AWS account.
+(Sufficient permissions list that is likely more than necessary: `CloudWatchFullAccess`,`IAMFullAccess`,`AmazonS3FullAccess`,`CloudWatchFullAccessV2`).
+Save the credentials in your AWS config (`~/.aws/config` on Mac/LINUX, `C:\Users\Administrator\.aws\config` on Windows) in the following format:
+
+```text
+[profile CPG]
+aws_access_key_id = REDACTED
+aws_secret_access_key = REDACTED
+region = us-east-1
+output = json
+```
+
 All commands require `AWS_PROFILE=<your_aws_profile>` prefix (e.g., `AWS_PROFILE=<your_aws_profile> cytoskel cpgstaging list location`).
+In the example above,`<your_aws_profile>` is `CPG`.
 Alternatively, set the environment variable using `export AWS_PROFILE=<your_aws_profile>`.
-`your_aws_profile` should have admin access to `cellpainting-gallery` AWS account.
 
 ### Initialize Infrastructure (One-Time Setup)
+
 Skip over this step if the infrastructure has already been initialized.
 
 This needs to be done just once to:
@@ -37,7 +52,6 @@ This needs to be done just once to:
 - Set up the S3 Access Grants instance
 - Register the bucket location for access grants
 - Create necessary IAM roles and policies
-
 
 ```bash
 cytoskel cpgstaging up
