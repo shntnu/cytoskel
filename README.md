@@ -20,6 +20,9 @@ pip install -e .
 
 # Alternatively, use Nix
 nix develop . --impure
+
+# You may need to specify these flags
+# nix develop . --impure --extra-experimental-features nix-command --extra-experimental-features flakes
 ```
 
 ## Core Operations
